@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SOCIAL_AUTH_ION_KEY="lGcBA5CN1Y0LaPxZHB6hsIthf283yqy0YgA59Fzy"
+SOCIAL_AUTH_ION_SECRET="7C2tRcRHDfK0Pfi8uZTeOFESbgT6y2XidUusOKPYBnc8LBJfQKGK658eCDCg6nmEYsSlEhy0yt8iyaXJKXoalO2soo6BlADpoYlBfETo9bMWYiEdqAzkx5oLUgcsJjeS"
+
 
 # Application definition
 
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'oauth2_provider',
     'blog',
+    'ion_auth',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +147,25 @@ CELERY_TIMEZONE = TIME_ZONE
 # Redis Configuration
 REDIS_HOST = 'redis'
 REDIS_PORT = 6379
+
+# Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+    'loggers': {
+        'ion_auth': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}

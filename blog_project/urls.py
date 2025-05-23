@@ -17,9 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+# Import your Ion OAuth views from the blog app - REMOVED
+# from blog import views as blog_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),
-    path('', RedirectView.as_view(url='blog/', permanent=True)),
+    # Explicitly handle the root URL by including blog.urls
+    path('', include('blog.urls')),
+    # Include the URLs from the new ion_auth app at the root level
+    path("oauth/", include("ion_auth.urls")),
+    # Removed Ion OAuth URLs defined directly
+    # path("oauth/", blog_views.IonLoginView.as_view(), name="oauth2"),
+    # path("oauth/redirect", blog_views.IonCallbackView.as_view(), name="redirect"),
+    # path("oauth/logout", blog_views.IonLogoutView.as_view(), name="logout"),
 ]
