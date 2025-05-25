@@ -31,3 +31,4 @@ urlpatterns = [
     # path("oauth/redirect", blog_views.IonCallbackView.as_view(), name="redirect"),
     # path("oauth/logout", blog_views.IonLogoutView.as_view(), name="logout"),
 ]
+
